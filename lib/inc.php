@@ -58,6 +58,7 @@ class TmxLibraryIncluder{
         require_once ( get_template_directory().'/lib/customizer.php');
         require_once ( get_template_directory().'/lib/theme-support.php');
         require_once ( get_template_directory().'/lib/shortcode.php');
+        require_once ( get_template_directory().'/lib/tinymce.php');
     }
 
     /**
@@ -74,6 +75,7 @@ class TmxLibraryIncluder{
         ));
         new TmxThemeSupport();
         new TmxShortcode();
+        new TmxTinyMCE();
     }
 
     /**

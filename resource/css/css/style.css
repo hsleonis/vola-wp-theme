@@ -310,11 +310,11 @@ header#beau-header nav div.main-menu .menu-item-has-children > a > span.caret:be
 header#beau-header nav div.main-menu .menu-item-has-children:hover > a > span.caret:before {
   content: '-';
 }
-header#beau-header nav div.main-menu ul.menu li.menu-item.current-menu-ancestor > a:before,
+/*header#beau-header nav div.main-menu ul.menu li.menu-item.current-menu-ancestor > a:before,
 header#beau-header nav div.main-menu ul.menu li.menu-item.current-menu-item > a:before {
   width: 100% !important;
   opacity: 1 !important;
-}
+}*/
 header#beau-header nav div.main-menu ul.menu > li.menu-item {
   display: block;
   float: left;
@@ -346,6 +346,9 @@ top:calc(50% + 8px);
   bottom: 0;
   left: 0;
   opacity: 0;
+}
+.current-menu-item a {
+  font-weight: bold;
 }
 header#beau-header nav div.main-menu ul.menu > li.menu-item > a:hover:before {
   width: 100%;
