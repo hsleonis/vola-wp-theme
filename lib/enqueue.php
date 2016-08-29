@@ -83,11 +83,21 @@ class TmxEnqueue{
     }
 
     /**
+     * Enqueues style & scripts on admin
+     *
+     * @since 1.0.1
+     */
+    public function tmx_admin_scripts(){
+        wp_enqueue_style('tmx-admin-shortcode', get_stylesheet_directory_uri().'/resource/css/admin-style.css');
+    }
+
+    /**
      * Attach hooks
      *
      * @since 1.0.1
      */
     private function hooks(){
         add_action( 'wp_enqueue_scripts', array($this, 'tmx_enqueue_scripts') );
+        add_action( 'admin_enqueue_scripts', array($this, 'tmx_admin_scripts') );
     }
 }

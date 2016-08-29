@@ -1,38 +1,44 @@
-'use strict';
+function addslashes( str ) {
+    var a = str.replace(/"/g, "&quote");
+    return a;
+}
 
 (function() {
+    'use strict';
     tinymce.PluginManager.add('tmx_vola_box', function( editor, url ) {
         editor.addButton( 'tmx_vola_box', {
-            title: 'My test button',
-            icon: 'wp_code',
+            title: 'Text Box',
+            icon: 'icon dashicons-format-aside',
             onclick: function() {
                 editor.windowManager.open( {
-                    title: 'Insert header tag',
+                    title: 'Text Box',
+                    width: 520,
+                    height: 225,
                     body: [{
                         type: 'textbox',
                         name: 'title',
-                        label: 'Your title'
+                        label: 'Title',
+                        placeholder: 'Title'
                     },
-                        {
-                            type: 'textbox',
-                            name: 'id',
-                            label: 'Header anchor'
-                        },
-                        {
-                            type: 'listbox',
-                            name: 'level',
-                            label: 'Header level',
-                            'values': [
-                                {text: '&lt;h3&gt;', value: '3'},
-                                {text: '&lt;h4&gt;', value: '4'},
-                                {text: '&lt;h5&gt;', value: '5'},
-                                {text: '&lt;h6&gt;', value: '6'}
-                            ]
-                        }],
+                    {
+                        type: 'textbox',
+                        multiline: true,
+                        name: 'desc',
+                        label: 'Description',
+                        placeholder: 'Description ( HTML, CSS allowed )'
+                    },
+                    {
+                        type: 'textbox',
+                        multiline: true,
+                        name: 'style',
+                        label: 'Styles',
+                        placeholder: 'Inline CSS Style'
+                    }],
                     onsubmit: function( e ) {
-                        editor.insertContent( '&lt;h' + e.data.level + ' id="' + e.data.id + '"&gt;' + e.data.title + '&lt;/h' + e.data.level + '&gt;');
+                        editor.insertContent( '[text_box title="' + e.data.title + '" desc="' + addslashes(e.data.desc) + '" style="' + addslashes(e.data.style) + '"]');
                     }
                 });
+                console.log(top.tinymce.activeEditor.windowManager.getParams());
             }
         });
     });

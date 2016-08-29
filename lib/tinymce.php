@@ -69,6 +69,7 @@ class TmxTinyMCE{
      */
     public function tmx_add_tinymce_plugin($plugin_array) {
         $plugin_array['tmx_vola_box'] = get_template_directory_uri().'/resource/js/tmx-vola-box.js';
+        $plugin_array['tmx_vola_box_image'] = get_template_directory_uri().'/resource/js/tmx-vola-box-image.js';
         return $plugin_array;
     }
 
@@ -82,6 +83,7 @@ class TmxTinyMCE{
      */
     public function tmx_add_tinymce_toolbar_button($buttons) {
         array_push($buttons, "tmx_vola_box");
+        array_push($buttons, "tmx_vola_box_image");
         return $buttons;
     }
 
