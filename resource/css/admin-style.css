@@ -8,3 +8,7 @@ i.mce-i-icon {
 	margin-left: -2px;
 	padding-right: 2px
 }
+#mce-image-uploader {
+	width: 150px !important;
+	left: 346px !important;
+}

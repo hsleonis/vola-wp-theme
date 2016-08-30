@@ -8,12 +8,41 @@
                 editor.windowManager.open( {
                     title: 'Image Box',
                     width: 520,
-                    height: 225,
+                    height: 270,
                     body: [{
                         type: 'textbox',
                         name: 'src',
-                        label: 'Source',
-                        placeholder: 'Image URL'
+                        label: 'Image',
+                        id: 'tmx-img-src',
+                        placeholder: 'Image URL',
+                        value: '',
+                    },
+                    {
+                        type: 'button',
+                        name: 'srcimg',
+                        id: 'mce-image-uploader',
+                        text: 'Select Image',
+                        onclick: function() {
+                            window.mb = window.mb || {};
+
+                            window.mb.frame = wp.media({
+                                library : {
+                                    type : 'image'
+                                },
+                                multiple: false
+                            });
+
+                            window.mb.frame.on('select', function() {
+                                var json = window.mb.frame.state().get('selection').first().toJSON();
+                                if (0 > jQuery.trim(json.url.length)) {
+                                    return;
+                                }
+
+                                jQuery('#tmx-img-src').val(json.url); // Add value to the text box
+                            });
+
+                            window.mb.frame.open();
+                        }
                     },
                     {
                         type: 'textbox',
@@ -35,15 +64,16 @@
                         placeholder: 'Opens link in this window/new tab/popup'
                     },
                     {
-                        type: 'textbox',
+                        type: 'checkbox',
                         name: 'border',
                         label: 'Border',
                     }],
                     onsubmit: function( e ) {
-                        editor.insertContent( '[image_box title="' + e.data.title + '" desc="' + addslashes(e.data.desc) + '" style="' + addslashes(e.data.style) + '"]');
+                        var b = (e.data.border==true)?1:0;
+                        editor.insertContent( '[image_box src="' + e.data.src + '" alt="' + e.data.alt + '" link="' + e.data.link + '" target="' + e.data.target + '" border="' + b + '"]');
                     }
                 });
-                console.log(top.tinymce.activeEditor.windowManager.getParams());
+                // console.log(top.tinymce.activeEditor.windowManager.getParams());
             }
         });
     });
