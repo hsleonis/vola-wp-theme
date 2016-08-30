@@ -37,7 +37,7 @@ class TmxShortcode
         ?>
         <article id="2319" class="beau-portfolio-item beau-post-in-list post-2319 beau_portfolio type-beau_portfolio status-publish has-post-thumbnail hentry project_category-design project_category-mockup">
             <div class="beau-portfolio-featured-image-wrapper">
-                <div class="beau-portfolio-featured-image-bg" style="<?php echo (bool)$a['border']?'border: 1px solid #000;':''; ?>">
+                <div class="beau-portfolio-featured-image-bg" style="<?php echo $a['border']?'border: 1px solid #000;':''; ?>">
                     <a href="<?php echo $a['link']; ?>" target="<?php echo $a['target']; ?>"><img src="<?php echo $a['src']; ?>" alt="<?php echo $a['alt']; ?>" /></a>
                 </div>
             </div>
@@ -51,10 +51,9 @@ class TmxShortcode
      *
      * @since 1.0.1
      */
-    public function shortcode_text( $atts ) {
+    public function shortcode_text( $atts, $content = null ) {
         $a = shortcode_atts( array(
             'title' => '',
-            'desc' => '',
             'style' => '',
         ), $atts );
 
@@ -64,7 +63,7 @@ class TmxShortcode
             <div class="beau-portfolio-featured-image-wrapper">
                 <div class="beau-portfolio-featured-image-bg" style="min-height:225px; border:1px solid; padding:15px;<?php echo $a['style']; ?>">
                     <p style="text-transform:uppercase; font-size:22px; letter-spacing:1.6px; margin:0px 0px 12px 0px; text-align:center; line-height:28px"><?php echo $a['title']; ?></p>
-                    <p style="font-size:14px; line-height:18.5px !important; text-align:center;"><?php echo html_entity_decode($a['desc']); ?>
+                    <p style="font-size:14px; line-height:18.5px !important; text-align:center;"><?php echo do_shortcode($content); ?>
                     </p>
                 </div>
             </div>

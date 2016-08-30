@@ -35,7 +35,7 @@ function addslashes( str ) {
                         placeholder: 'Inline CSS Style'
                     }],
                     onsubmit: function( e ) {
-                        editor.insertContent( '[text_box title="' + e.data.title + '" desc="' + addslashes(e.data.desc) + '" style="' + addslashes(e.data.style) + '"]');
+                        editor.insertContent( '[text_box title="' + e.data.title + '" style="' + addslashes(e.data.style) + '"]'+ e.data.desc + '[/text_box]');
                     }
                 });
                 console.log(top.tinymce.activeEditor.windowManager.getParams());
